@@ -1,0 +1,18 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DSA</title>
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <h1 class="h1-index">Please enter a phrase you would like to have analyzed.</h1>
+    <form >
+         Your Text<br>
+        <input type="text" name="user_corpra">
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

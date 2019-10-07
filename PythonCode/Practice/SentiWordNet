@@ -1,0 +1,25 @@
+import nltk
+from nltk.corpus import sentiwordnet as swn
+
+
+# print(list(swn.senti_synsets('dog')))
+# print(list(swn.senti_synsets('dog'))[3].pos_score())
+# print(list(swn.senti_synsets('dog'))[3].neg_score())
+
+def superNaiveSentiment(review):
+    reviewPolarity = 0.0
+    numExceptions = 0
+    for word in review.lower().split():
+        weight = 0.0
+        try:
+            common_meaning = swn.senti_synsets(word)[0]
+            if common_meaning.pos_score()>common_meaning.neg_score():
+                weight = weight + common_meaning.pos_score()
+            elif common_meaning.pos_score()<common_meaning.neg_score():
+                weight = weight - common_meaning.neg_score()
+        except:
+            numExceptions = numExceptions + 1
+        print("Word: " + word + " weight: " + str(weight))
+        reviewPolarity = reviewPolarity + weight
+        return reviewPolarity
+
